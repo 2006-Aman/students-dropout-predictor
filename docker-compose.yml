@@ -1,0 +1,42 @@
+services:
+  backend:
+    image: dropout-backend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dropout-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./models:/app/models
+      - ./reports:/app/reports
+      - ./logs:/app/logs
+      - ./data:/app/data
+
+  frontend:
+    image: dropout-frontend:latest
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_BASE_URL=http://localhost:8000
+    container_name: dropout-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+    # No volumes for production-like serving
+
+networks:
+  default:
+    name: dropout-net
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.65.0/24
+
+
