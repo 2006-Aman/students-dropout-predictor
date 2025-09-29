@@ -50,12 +50,15 @@ exporter = ReportExporter()
 
 # Pydantic models for request/response
 class PredictionRequest(BaseModel):
+    model_config = {"protected_namespaces": ()}
     student_data: Dict[str, Any]
 
 class BatchPredictionRequest(BaseModel):
+    model_config = {"protected_namespaces": ()}
     students_data: List[Dict[str, Any]]
 
 class PredictionResponse(BaseModel):
+    model_config = {"protected_namespaces": ()}
     student_id: str
     dropout_probability: float
     risk_label: str
@@ -63,12 +66,14 @@ class PredictionResponse(BaseModel):
     explanation: str
 
 class ModelStatusResponse(BaseModel):
+    model_config = {"protected_namespaces": ()}
     is_trained: bool
     model_version: Optional[str]
     feature_columns: List[str]
     training_metrics: Dict[str, float]
 
 class TrainingRequest(BaseModel):
+    model_config = {"protected_namespaces": ()}
     use_hyperparameter_tuning: bool = False
     use_smote: bool = True
 
