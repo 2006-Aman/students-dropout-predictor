@@ -6,9 +6,7 @@ services:
     plan: starter
     runtime: python
     pythonVersion: 3.11.9
-    buildCommand: |
-      pip install --upgrade pip setuptools==68.0.0 wheel==0.41.2
-      pip install --no-cache-dir -r requirements.txt
+    buildCommand: pip install --upgrade pip setuptools==68.0.0 wheel==0.41.2 && pip install --no-cache-dir -r requirements.txt
     startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT --workers 1
     envVars:
       - key: PYTHON_VERSION
@@ -19,18 +17,17 @@ services:
         value: 1
       - key: PIP_DISABLE_PIP_VERSION_CHECK
         value: 1
-    healthCheckPath: /health
+    healthCheckPath: /docs
 
   # Frontend Service
   - type: web
     name: student-dropout-frontend
     env: static
     plan: starter
-    buildCommand: |
-      cd frontend
-      npm install --production
-      npm run build
+    buildCommand: cd frontend && npm install --production && npm run build
     staticPublishPath: ./frontend/dist
     envVars:
       - key: VITE_API_BASE_URL
         value: https://student-dropout-api.onrender.com
+
+
