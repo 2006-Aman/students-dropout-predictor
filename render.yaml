@@ -30,10 +30,10 @@ services:
     name: student-dropout-frontend
     env: static
     plan: starter
-    buildCommand: cd frontend && npm install --production && npm run build
+    buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: ./frontend/dist
     envVars:
       - key: VITE_API_BASE_URL
-        value: https://student-dropout-api.onrender.com
+        value: https://students-dropout-predictor-1-g2fl.onrender.com
 
 
