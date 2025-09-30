@@ -6,8 +6,8 @@ services:
     plan: starter
     pythonVersion: 3.11.9
     buildCommand: |
-      chmod +x build_fix.sh
-      ./build_fix.sh
+      chmod +x build_pandas_fix.sh
+      ./build_pandas_fix.sh
     startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT --workers 1
     envVars:
       - key: PYTHON_VERSION

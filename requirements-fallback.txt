@@ -1,4 +1,4 @@
-# Requirements with only pre-compiled wheels
+# Fallback requirements with only pre-compiled wheels
 # Avoids all compilation issues on Render
 
 # Web Framework (guaranteed wheels)

@@ -1,6 +1,6 @@
 #!/bin/bash
 # Build script to fix pandas compilation issues on Render
-# Forces Python 3.11 and handles pandas compilation gracefully
+# Handles Python 3.13 compatibility issues with pandas
 
 set -e
 
@@ -28,8 +28,8 @@ pip install --no-cache-dir --no-build-isolation pandas==2.0.3 || {
 # Install other dependencies
 echo "📚 Installing other dependencies..."
 pip install --no-cache-dir -r requirements.txt || {
-    echo "⚠️  Full requirements failed, trying no-compile version..."
-    pip install --no-cache-dir -r requirements-no-compile.txt
+    echo "⚠️  Full requirements failed, trying fallback version..."
+    pip install --no-cache-dir -r requirements-fallback.txt
 }
 
 echo "✅ Build completed successfully!"
