@@ -594,7 +594,7 @@ export function Dashboard({ data }: DashboardProps) {
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-sm font-medium text-red-800 dark:text-red-200">Critical Risk Students</div>
-                    <div className="text-xs text-red-600 dark:text-red-400">Dropout probability > 80%</div>
+                    <div className="text-xs text-red-600 dark:text-red-400">Dropout probability &gt; 80%</div>
                   </div>
                   <div className="text-2xl font-bold text-red-600 dark:text-red-400">{data.highRisk}</div>
                 </div>
