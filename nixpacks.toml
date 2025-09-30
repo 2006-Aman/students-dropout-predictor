@@ -1,0 +1,14 @@
+[phases.setup]
+nixPkgs = ["python311", "pip"]
+
+[phases.install]
+cmds = [
+  "pip install --upgrade pip setuptools==68.0.0 wheel==0.41.2",
+  "pip install --no-cache-dir -r requirements.txt"
+]
+
+[phases.build]
+cmds = ["echo 'Build phase completed'"]
+
+[start]
+cmd = "uvicorn api:app --host 0.0.0.0 --port $PORT --workers 1"
