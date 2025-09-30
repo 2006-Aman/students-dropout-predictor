@@ -1,0 +1,12 @@
+{
+  "student_data": {
+    "student_id": "STU_0001",
+    "attendance_percentage": 86.12319840360081,
+    "assignment_timeliness": 100.0,
+    "quiz_test_avg_pct": 69.11770907562232,
+    "fee_payment_status": 1.0,
+    "lms_login_count_monthly": 11.783190013023967,
+    "time_spent_online_hours_week": 11.810869642661615
+  }
+}
+
