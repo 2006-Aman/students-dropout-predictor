@@ -1,0 +1,19 @@
+# Exclude unnecessary files from backend build context
+frontend/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+.git/
+.gitignore
+.idea/
+.vscode/
+.DS_Store
+node_modules/
+reports/
+logs/
+data/
+models/
+# Keep only code copied by Dockerfile; runtime dirs are mounted via volumes
