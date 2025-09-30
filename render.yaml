@@ -7,8 +7,8 @@ services:
     pythonVersion: 3.11.9
     buildCommand: |
       pip install --upgrade pip setuptools wheel
-      pip install --no-cache-dir -r requirements-ultra-minimal.txt
-    startCommand: uvicorn api_simple:app --host 0.0.0.0 --port $PORT --workers 1
+      pip install --no-cache-dir -r requirements-complete.txt
+    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT --workers 1
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.9
