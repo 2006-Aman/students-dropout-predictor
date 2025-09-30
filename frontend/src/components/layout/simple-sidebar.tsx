@@ -25,7 +25,12 @@ export function SimpleSidebar({ activeTab, onTabChange, theme, highRiskCount = 0
   }
 
   return (
-    <aside className="w-72 flex-shrink-0" style={{
+    <aside style={{
+      position: 'fixed',
+      top: '89px',
+      left: 0,
+      bottom: 0,
+      width: '280px',
       background: colors.bg,
       backdropFilter: 'blur(12px)',
       borderRight: `1px solid ${colors.border}`,
@@ -33,6 +38,7 @@ export function SimpleSidebar({ activeTab, onTabChange, theme, highRiskCount = 0
       transition: 'all 0.3s ease',
       overflowY: 'auto',
       WebkitOverflowScrolling: 'touch',
+      zIndex: 45,
       boxShadow: '2px 0 12px rgba(0,0,0,0.05)'
     }}>
      

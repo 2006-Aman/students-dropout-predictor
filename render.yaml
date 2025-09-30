@@ -5,13 +5,18 @@ services:
     env: python
     plan: starter
     buildCommand: |
-      pip install -r requirements.txt
-    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT
+      chmod +x build.sh
+      ./build.sh
+    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT --workers 1
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
       - key: PORT
         value: 10000
+      - key: PIP_NO_CACHE_DIR
+        value: 1
+      - key: PIP_DISABLE_PIP_VERSION_CHECK
+        value: 1
     healthCheckPath: /docs
 
   # Frontend Service
@@ -21,7 +26,7 @@ services:
     plan: starter
     buildCommand: |
       cd frontend
-      npm install
+      npm install --production
       npm run build
     staticPublishPath: ./frontend/dist
     envVars:

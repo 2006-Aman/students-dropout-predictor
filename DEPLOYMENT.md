@@ -108,12 +108,18 @@ If you prefer to deploy everything as one service:
    - Verify all dependencies in `requirements.txt`
    - Check build logs for specific errors
 
-2. **Runtime Errors**
+2. **Pandas Compilation Error**
+   - **Error**: `error: subprocess-exited-with-error` with pandas compilation
+   - **Solution**: Use `requirements-simple.txt` instead of `requirements.txt`
+   - **Alternative**: Try `requirements-render.txt` which uses pre-compiled wheels
+   - **Build Command**: Change to `pip install --no-cache-dir -r requirements-simple.txt`
+
+3. **Runtime Errors**
    - Ensure all environment variables are set
    - Check that the PORT environment variable is used
    - Verify file paths are correct
 
-3. **Frontend Not Loading**
+4. **Frontend Not Loading**
    - Check that `VITE_API_BASE_URL` is set correctly
    - Verify the backend is running and accessible
    - Check browser console for errors

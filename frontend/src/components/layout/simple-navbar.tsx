@@ -5,7 +5,11 @@ export function SimpleNavbar() {
   const { theme, toggleTheme } = useTheme()
 
   return (
-    <header className="w-full flex-shrink-0" style={{
+    <header style={{
+      position: 'fixed',
+      top: 0,
+      zIndex: 50,
+      width: '100%',
       backgroundColor: theme === 'dark' ? 'rgba(17, 24, 39, 0.8)' : 'rgba(255, 255, 255, 0.8)',
       backdropFilter: 'blur(10px)',
       borderBottom: `1px solid ${theme === 'dark' ? '#283244' : '#e6e9ef'}`,
@@ -13,7 +17,13 @@ export function SimpleNavbar() {
       transition: 'all 0.3s ease',
       boxShadow: theme === 'dark' ? '0 1px 0 rgba(255,255,255,0.04)' : '0 1px 0 rgba(15, 23, 42, 0.04)'
     }}>
-      <div className="flex items-center justify-between w-full">
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        maxWidth: '1240px',
+        margin: '0 auto'
+      }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem' }}>
           <div style={{
             width: '42px',

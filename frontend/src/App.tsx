@@ -63,19 +63,22 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ 
+    <div style={{ 
+      minHeight: '100vh', 
       backgroundColor: theme === 'dark' ? '#111827' : '#f8fafc', 
       color: theme === 'dark' ? '#f9fafb' : '#1a202c',
       transition: 'all 0.3s ease'
     }}>
       <SimpleNavbar />
-      <div className="flex flex-1">
+      <div style={{ display: 'flex' }}>
         <SimpleSidebar activeTab={activeTab} onTabChange={setActiveTab} theme={theme} highRiskCount={getHighRiskStudents().length} />
-        <main className="flex-1 p-6 overflow-auto" style={{ 
+        <main style={{ 
+          flex: 1, 
+          padding: '1.5rem',
           backgroundColor: theme === 'dark' ? '#111827' : '#f8fafc',
           transition: 'all 0.3s ease'
         }}>
-          <div key={activeTab} className="w-full">
+          <div key={activeTab}>
             {renderPage()}
           </div>
         </main>
