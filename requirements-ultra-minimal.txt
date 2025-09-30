@@ -1,0 +1,13 @@
+# Ultra-minimal requirements for Render deployment
+# Only the most essential packages with guaranteed compatibility
+
+# Core web framework only
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+python-multipart==0.0.6
+gunicorn==21.2.0
+
+# Build tools
+setuptools==68.0.0
+wheel==0.41.2
