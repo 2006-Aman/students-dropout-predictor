@@ -1,18 +1,7 @@
 // import React from 'react'
 import PageContainer from '@/components/layout/PageContainer'
 
-interface Student {
-  id: string
-  name: string
-  dropoutProbability: number
-  riskLabel: string
-  topFeatures: Array<{ feature: string; value: number }>
-  attendance: number
-  performance: number
-  paymentStatus: string
-  assignment_timeliness?: number
-  lms_login_count?: number
-}
+import { Student } from '@/hooks/useDataManager'
 
 interface SimpleHighRiskProps {
   students: Student[]
@@ -293,14 +282,14 @@ export function SimpleHighRisk({ students, onExport, isLoading = false }: Simple
                     fontSize: '0.75rem',
                     fontWeight: '600'
                   }}>
-                    {student.riskLabel || 'High'} Risk
+                    {student.risk_label || 'High'} Risk
                   </div>
                   <div style={{
                     fontSize: '1.25rem',
                     fontWeight: '700',
                     color: '#dc2626'
                   }}>
-                    {((student.dropoutProbability || 0) * 100).toFixed(1)}%
+                    {((student.dropout_probability || 0) * 100).toFixed(1)}%
                   </div>
                 </div>
               </div>
@@ -381,8 +370,8 @@ export function SimpleHighRisk({ students, onExport, isLoading = false }: Simple
                   {(() => {
                     const chips: Array<{ label: string; score: number }> = []
                     // Use provided topFeatures if available
-                    if (student.topFeatures && student.topFeatures.length) {
-                      student.topFeatures.slice(0, 5).forEach(tf => {
+                    if (student.top_features && student.top_features.length) {
+                      student.top_features.slice(0, 5).forEach((tf: any) => {
                         chips.push({ label: tf.feature.replace(/_/g, ' '), score: Math.min(1, Math.abs(tf.value)) })
                       })
                     } else {

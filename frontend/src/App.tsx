@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { SimpleNavbar } from '@/components/layout/simple-navbar'
 import { SimpleSidebar } from '@/components/layout/simple-sidebar'
 import { SimpleDashboard } from '@/components/pages/simple-dashboard'
@@ -17,7 +17,7 @@ function App() {
     students,
     dashboardData,
     isLoading,
-    uploadedFile,
+    uploadedFile: _uploadedFile,
     processUploadedData,
     getHighRiskStudents,
     exportData,

@@ -7,16 +7,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { AlertTriangle, Download, Search, Eye, FileText, Users } from 'lucide-react'
 import { formatPercentage, getRiskBadgeClass } from '@/lib/utils'
 
-interface Student {
-  id: string
-  name: string
-  dropoutProbability: number
-  riskLabel: string
-  topFeatures: Array<{ feature: string; value: number }>
-  attendance: number
-  performance: number
-  paymentStatus: string
-}
+import { Student } from '@/hooks/useDataManager'
 
 interface HighRiskStudentsProps {
   students: Student[]
@@ -54,7 +45,7 @@ export function HighRiskStudents({ students, onExport }: HighRiskStudentsProps) 
   const getInterventionRecommendations = (student: Student) => {
     const recommendations = []
     
-    if (student.attendance < 70) {
+    if ((student.attendance || student.attendance_percentage) < 70) {
       recommendations.push({
         factor: 'Low Attendance',
         priority: 'High',
@@ -62,7 +53,7 @@ export function HighRiskStudents({ students, onExport }: HighRiskStudentsProps) 
       })
     }
     
-    if (student.performance < 60) {
+    if ((student.performance || student.quiz_test_avg_pct) < 60) {
       recommendations.push({
         factor: 'Poor Academic Performance',
         priority: 'High',
@@ -144,7 +135,7 @@ export function HighRiskStudents({ students, onExport }: HighRiskStudentsProps) 
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {formatPercentage(students.reduce((acc, s) => acc + s.dropoutProbability, 0) / students.length)}
+              {formatPercentage(students.reduce((acc, s) => acc + (s.dropout_probability || 0), 0) / students.length)}
             </div>
             <p className="text-xs text-muted-foreground">
               Average dropout probability
@@ -221,18 +212,18 @@ export function HighRiskStudents({ students, onExport }: HighRiskStudentsProps) 
                     <td className="p-2 font-mono text-xs">{student.id}</td>
                     <td className="p-2 font-medium">{student.name}</td>
                     <td className="p-2">
-                      <Badge className={getRiskBadgeClass(student.riskLabel)}>
-                        {student.riskLabel}
+                      <Badge className={getRiskBadgeClass(student.risk_label || 'Low')}>
+                        {student.risk_label || 'Low'}
                       </Badge>
                     </td>
                     <td className="p-2 font-mono">
-                      {formatPercentage(student.dropoutProbability)}
+                      {formatPercentage(student.dropout_probability || 0)}
                     </td>
-                    <td className="p-2">{student.attendance}%</td>
-                    <td className="p-2">{student.performance}%</td>
+                    <td className="p-2">{student.attendance_percentage}%</td>
+                    <td className="p-2">{student.quiz_test_avg_pct}%</td>
                     <td className="p-2">
-                      <Badge variant={student.paymentStatus === 'Paid' ? 'default' : 'destructive'}>
-                        {student.paymentStatus}
+                      <Badge variant={student.fee_payment_status === 'Paid' ? 'default' : 'destructive'}>
+                        {student.fee_payment_status}
                       </Badge>
                     </td>
                     <td className="p-2">
@@ -261,23 +252,23 @@ export function HighRiskStudents({ students, onExport }: HighRiskStudentsProps) 
                                   <p><span className="font-medium">ID:</span> {student.id}</p>
                                   <p><span className="font-medium">Name:</span> {student.name}</p>
                                   <p><span className="font-medium">Risk Level:</span> 
-                                    <Badge className={`ml-2 ${getRiskBadgeClass(student.riskLabel)}`}>
-                                      {student.riskLabel}
+                                    <Badge className={`ml-2 ${getRiskBadgeClass(student.risk_label || 'Low')}`}>
+                                      {student.risk_label || 'Low'}
                                     </Badge>
                                   </p>
                                   <p><span className="font-medium">Dropout Probability:</span> 
-                                    <span className="font-mono ml-2">{formatPercentage(student.dropoutProbability)}</span>
+                                    <span className="font-mono ml-2">{formatPercentage(student.dropout_probability || 0)}</span>
                                   </p>
                                 </div>
                               </div>
                               <div>
                                 <h4 className="font-medium mb-2">Academic Performance</h4>
                                 <div className="space-y-1 text-sm">
-                                  <p><span className="font-medium">Attendance:</span> {student.attendance}%</p>
-                                  <p><span className="font-medium">Performance:</span> {student.performance}%</p>
+                                  <p><span className="font-medium">Attendance:</span> {student.attendance_percentage}%</p>
+                                  <p><span className="font-medium">Performance:</span> {student.quiz_test_avg_pct}%</p>
                                   <p><span className="font-medium">Payment Status:</span> 
-                                    <Badge variant={student.paymentStatus === 'Paid' ? 'default' : 'destructive'} className="ml-2">
-                                      {student.paymentStatus}
+                                    <Badge variant={student.fee_payment_status === 'Paid' ? 'default' : 'destructive'} className="ml-2">
+                                      {student.fee_payment_status}
                                     </Badge>
                                   </p>
                                 </div>
@@ -287,7 +278,7 @@ export function HighRiskStudents({ students, onExport }: HighRiskStudentsProps) 
                             <div>
                               <h4 className="font-medium mb-2">Top Risk Factors</h4>
                               <div className="space-y-2">
-                                {student.topFeatures.map((feature, index) => (
+                                {(student.top_features || []).map((feature: any, index: number) => (
                                   <div key={index} className="flex justify-between items-center p-2 bg-muted rounded">
                                     <span className="font-medium">{feature.feature.replace(/_/g, ' ')}</span>
                                     <span className="font-mono text-sm">{feature.value.toFixed(3)}</span>

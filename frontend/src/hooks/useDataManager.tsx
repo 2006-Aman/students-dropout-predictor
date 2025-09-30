@@ -159,35 +159,35 @@ export function useDataManager() {
   }
 
   // Generate mock students from uploaded file
-  const generateMockStudentsFromFile = (_file: File): Student[] => {
-    const studentCount = Math.floor(Math.random() * 500) + 100 // 100-600 students
-    const students: Student[] = []
-    
-    for (let i = 0; i < studentCount; i++) {
-      const attendance = Math.random() * 100
-      const assignmentTimeliness = Math.random()
-      const quizAvg = Math.random() * 100
-      const dropoutProb = calculateDropoutProbability(attendance, assignmentTimeliness, quizAvg)
-      
-      students.push({
-        id: `STU_${String(i + 1).padStart(3, '0')}`,
-        name: `Student ${i + 1}`,
-        age: Math.floor(Math.random() * 10) + 18, // 18-28
-        gender: Math.random() > 0.5 ? 'Male' : 'Female',
-        attendance_percentage: attendance,
-        assignment_timeliness: assignmentTimeliness,
-        quiz_test_avg_pct: quizAvg,
-        fee_payment_status: Math.random() > 0.3 ? 'Paid' : 'Unpaid',
-        socioeconomic_status: ['Low', 'Medium', 'High'][Math.floor(Math.random() * 3)],
-        lms_login_count: Math.floor(Math.random() * 50),
-        dropout_probability: dropoutProb,
-        risk_label: getRiskLabel(dropoutProb),
-        top_features: getTopFeatures(attendance, assignmentTimeliness, quizAvg)
-      })
-    }
-    
-    return students.sort((a, b) => (b.dropout_probability || 0) - (a.dropout_probability || 0))
-  }
+  // const _generateMockStudentsFromFile = (_file: File): Student[] => {
+  //   const studentCount = Math.floor(Math.random() * 500) + 100 // 100-600 students
+  //   const students: Student[] = []
+  //   
+  //   for (let i = 0; i < studentCount; i++) {
+  //     const attendance = Math.random() * 100
+  //     const assignmentTimeliness = Math.random()
+  //     const quizAvg = Math.random() * 100
+  //     const dropoutProb = calculateDropoutProbability(attendance, assignmentTimeliness, quizAvg)
+  //     
+  //     students.push({
+  //       id: `STU_${String(i + 1).padStart(3, '0')}`,
+  //       name: `Student ${i + 1}`,
+  //       age: Math.floor(Math.random() * 10) + 18, // 18-28
+  //       gender: Math.random() > 0.5 ? 'Male' : 'Female',
+  //       attendance_percentage: attendance,
+  //       assignment_timeliness: assignmentTimeliness,
+  //       quiz_test_avg_pct: quizAvg,
+  //       fee_payment_status: Math.random() > 0.3 ? 'Paid' : 'Unpaid',
+  //       socioeconomic_status: ['Low', 'Medium', 'High'][Math.floor(Math.random() * 3)],
+  //       lms_login_count: Math.floor(Math.random() * 50),
+  //       dropout_probability: dropoutProb,
+  //       risk_label: getRiskLabel(dropoutProb),
+  //       top_features: getTopFeatures(attendance, assignmentTimeliness, quizAvg)
+  //     })
+  //   }
+  //   
+  //   return students.sort((a, b) => (b.dropout_probability || 0) - (a.dropout_probability || 0))
+  // }
 
   // Calculate dropout probability based on key factors
   const calculateDropoutProbability = (attendance: number, assignmentTimeliness: number, quizAvg: number): number => {
@@ -349,7 +349,7 @@ export function useDataManager() {
     const highRiskStudents = students.filter(s => s.risk_label === 'High')
     const mediumRiskStudents = students.filter(s => s.risk_label === 'Medium')
     const lowRiskStudents = students.filter(s => s.risk_label === 'Low')
-    const _averageRisk = (students.reduce((sum, s) => sum + (s.dropout_probability || 0), 0) / students.length * 100).toFixed(1)
+    // const _averageRisk = (students.reduce((sum, s) => sum + (s.dropout_probability || 0), 0) / students.length * 100).toFixed(1)
     
     const pdfContent = `
 <!DOCTYPE html>

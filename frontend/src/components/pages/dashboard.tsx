@@ -1,6 +1,4 @@
-import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { Users, AlertTriangle, TrendingUp, BarChart3, Brain, Activity, Target, Zap, Clock, BookOpen, DollarSign, Calendar, Eye, Download, RefreshCw } from 'lucide-react'
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts'
 
@@ -278,7 +276,7 @@ export function Dashboard({ data }: DashboardProps) {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                  label={(props: any) => `${props.name} ${(props.percent * 100).toFixed(0)}%`}
                   outerRadius={100}
                   fill="#8884d8"
                   dataKey="value"
@@ -338,7 +336,7 @@ export function Dashboard({ data }: DashboardProps) {
                   tick={{ fontSize: 11 }}
                 />
                 <Tooltip 
-                  formatter={(value) => [value.toFixed(3), 'Importance']}
+                  formatter={(value: number) => [value.toFixed(3), 'Importance']}
                   labelStyle={{ color: '#374151' }}
                   contentStyle={{ 
                     backgroundColor: 'rgba(255, 255, 255, 0.95)', 
