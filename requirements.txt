@@ -28,3 +28,4 @@ reportlab==4.0.7
 
 # Build Tools
 setuptools==68.0.0
+wheel==0.41.2
