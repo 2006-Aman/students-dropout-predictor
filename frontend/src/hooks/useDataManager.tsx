@@ -113,7 +113,7 @@ export function useDataManager() {
   }
 
   // Parse actual CSV data
-  const parseCSVData = (csvText: string, filename: string): Student[] => {
+  const parseCSVData = (csvText: string, _filename: string): Student[] => {
     const lines = csvText.split('\n').filter(line => line.trim())
     if (lines.length < 2) return []
     
@@ -159,7 +159,7 @@ export function useDataManager() {
   }
 
   // Generate mock students from uploaded file
-  const generateMockStudentsFromFile = (file: File): Student[] => {
+  const generateMockStudentsFromFile = (_file: File): Student[] => {
     const studentCount = Math.floor(Math.random() * 500) + 100 // 100-600 students
     const students: Student[] = []
     
@@ -349,7 +349,7 @@ export function useDataManager() {
     const highRiskStudents = students.filter(s => s.risk_label === 'High')
     const mediumRiskStudents = students.filter(s => s.risk_label === 'Medium')
     const lowRiskStudents = students.filter(s => s.risk_label === 'Low')
-    const averageRisk = (students.reduce((sum, s) => sum + (s.dropout_probability || 0), 0) / students.length * 100).toFixed(1)
+    const _averageRisk = (students.reduce((sum, s) => sum + (s.dropout_probability || 0), 0) / students.length * 100).toFixed(1)
     
     const pdfContent = `
 <!DOCTYPE html>
@@ -527,7 +527,7 @@ export function useDataManager() {
 
     const fileName = `individual_reports_${new Date().toISOString().slice(0, 10)}.zip`
     
-    topRiskStudents.forEach((student, index) => {
+    topRiskStudents.forEach((student, _index) => {
       const individualReport = `
 <!DOCTYPE html>
 <html>

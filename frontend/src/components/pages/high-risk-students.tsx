@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -25,7 +25,7 @@ interface HighRiskStudentsProps {
 
 export function HighRiskStudents({ students, onExport }: HighRiskStudentsProps) {
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedStudent, setSelectedStudent] = useState<Student | null>(null)
+  const [_selectedStudent, setSelectedStudent] = useState<Student | null>(null)
   const [selectedStudents, setSelectedStudents] = useState<Set<string>>(new Set())
 
   const filteredStudents = students.filter(student =>

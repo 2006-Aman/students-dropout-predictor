@@ -5,8 +5,9 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatPercentage(value: number): string {
-  return `${(value * 100).toFixed(1)}%`
+export function formatPercentage(value: number | string): string {
+  const numValue = typeof value === 'string' ? parseFloat(value) : value
+  return `${(numValue * 100).toFixed(1)}%`
 }
 
 export function formatNumber(value: number): string {

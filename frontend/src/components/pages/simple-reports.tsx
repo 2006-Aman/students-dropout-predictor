@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import PageContainer from '@/components/layout/PageContainer'
 
 interface ExportHistoryItem {
@@ -15,7 +15,7 @@ interface SimpleReportsProps {
   exportHistory?: ExportHistoryItem[]
 }
 
-export function SimpleReports({ onExport, students = [], exportHistory = [] }: SimpleReportsProps) {
+export function SimpleReports({ onExport, students: _students = [], exportHistory = [] }: SimpleReportsProps) {
   return (
     <PageContainer>
       <div style={{ marginBottom: '2rem' }}>

@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
 import { Switch } from '@/components/ui/switch'
 import { Badge } from '@/components/ui/badge'
-import { Settings as SettingsIcon, Brain, Shield, Trash2, RefreshCw, AlertTriangle } from 'lucide-react'
+import { Brain, Shield, Trash2, RefreshCw, AlertTriangle } from 'lucide-react'
 
 interface SettingsProps {
   onRetrain: () => void
